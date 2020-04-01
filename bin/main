@@ -17,6 +17,10 @@ p 'Enter a name for player 1:'
 player_1 = gets.chomp
 p 'Enter a name for player 2:'
 player_2 = gets.chomp
+while player_1 == player_2
+  p "Use a diferent name for player 2"
+  player_2 = gets.chomp
+end
 
 def player_move
   p 'It\'s player_name_display \'s turn!'
@@ -24,5 +28,3 @@ def player_move
   p 'Make your move:'
   player_mark = gets.chomp
 end
-
-player_move
