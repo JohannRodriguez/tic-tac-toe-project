@@ -2,7 +2,9 @@
 $board_row_1 = ' 1 | 2 | 3 '
 $board_row_2 = ' 4 | 5 | 6 '
 $board_row_3 = ' 7 | 8 | 9 '
+$exit = false
 $win = false
+$turns = 9
 
 p 'How to play:'
 p 'Tic tac toe is a game for two players who will take turns to mark the spaces of a 3x3 grid, the first player who place three of their marks in a horizontal, vertical, or diagonal row wins'
@@ -37,6 +39,7 @@ def have_won
   $win = true if $board_row_1[1] == 'O' and $board_row_2[5] == 'O' and $board_row_3[9] == 'O'
   $win = true if $board_row_1[9] == 'X' and $board_row_2[5] == 'X' and $board_row_3[1] == 'X'
   $win = true if $board_row_1[9] == 'O' and $board_row_2[5] == 'O' and $board_row_3[1] == 'O'
+  $exit = true if $turns == 0 || $win
 end
 
 class Player_move
@@ -65,6 +68,7 @@ class Player_move
       end
     end
     @count += 1 if @valid_turn
+    $turns += 1 unless @valid_turn
     return puts "Please enter a valid character" unless @valid_turn
   end
 
@@ -75,10 +79,12 @@ class Player_move
     current_player = $player_2 if @count.odd?
     p "It's #{current_player}'s turn!" unless $win
     display_board
-    return puts "#{current_player} won!" if $win
+    return p "Its a draw" if $turns == 0 and $win == false
+    return p "#{current_player} won!" if $win
     p 'Make your move:'
     Player_move.board_check
+    $turns -= 1
   end
 end
 
-Player_move.make_a_move while $win == false
+Player_move.make_a_move while $exit == false
