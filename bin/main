@@ -25,7 +25,7 @@ def display_board
   p $board_row_3
 end
 
-def have_won
+def finish_game
   $win = true if $board_row_1 == ' X | X | X ' or $board_row_1 == ' O | O | O '
   $win = true if $board_row_2 == ' X | X | X ' or $board_row_2 == ' O | O | O '
   $win = true if $board_row_3 == ' X | X | X ' or $board_row_3 == ' O | O | O '
@@ -73,7 +73,7 @@ class Player_move
   end
 
   def self.make_a_move
-    have_won
+    finish_game
     @count -= 1 if $win
     current_player = $player_1 if @count.even?
     current_player = $player_2 if @count.odd?
