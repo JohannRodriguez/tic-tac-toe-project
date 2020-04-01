@@ -23,26 +23,28 @@ while $player_1 == $player_2
 end
 
 class Player_move
-  @turn = 'x'
   @count = 0
   def self.board_check
+    turn = 'x'
+    turn = 'x' if @count.even?
+    turn = 'o' if @count.odd?
     player_mark = gets.chomp
     @valid_turn = false
     $board_row_1.length.times do |n|
-      if player_mark == $board_row_1[n] and player_mark != "|" and player_mark != " "
-        $board_row_1[n] = @turn
+      if player_mark == $board_row_1[n] and player_mark != "|" and player_mark != " " and player_mark  != 'x' and player_mark != 'o'
+        $board_row_1[n] = turn
         @valid_turn = true
       end
     end
     $board_row_2.length.times do |n|
-      if player_mark == $board_row_2[n] and player_mark != "|" and player_mark != " "
-        $board_row_2[n] = @turn
+      if player_mark == $board_row_2[n] and player_mark != "|" and player_mark != " " and player_mark  != 'x' and player_mark != 'o'
+        $board_row_2[n] = turn
         @valid_turn = true
       end
     end
     $board_row_3.length.times do |n|
-      if player_mark == $board_row_3[n] and player_mark != "|" and player_mark != " "
-        $board_row_3[n] = @turn
+      if player_mark == $board_row_3[n] and player_mark != "|" and player_mark != " " and player_mark  != 'x' and player_mark != 'o'
+        $board_row_3[n] = turn
         @valid_turn = true
       end
     end
@@ -52,11 +54,12 @@ class Player_move
 
   def self.make_a_move
     current_player = $player_1
-    p "It's #{@count}'s turn!"
+    current_player = $player_1 if @count.even?
+    current_player = $player_2 if @count.odd?
+    p "It's #{current_player}'s turn!"
     display_board
     p 'Make your move:'
     Player_move.board_check
-
   end
 end
 
