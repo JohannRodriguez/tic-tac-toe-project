@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
-board_row_1 ' 1 | 2 | 3 '
-board_row_2 ' 4 | 5 | 6 '
-board_row_3 ' 7 | 8 | 9 '
+board_row_1 = ' 1 | 2 | 3 '
+board_row_2 = ' 4 | 5 | 6 '
+board_row_3 = ' 7 | 8 | 9 '
 
 p 'How to play:'
 p 'Tic tac toe is a game for two players who will take turns to mark the spaces of a 3x3 grid, the first player who place three of their marks in a horizontal, vertical, or diagonal row wins'
+p 'To play with this program, first enter a name for each of the players, when you are ready type the number where you want to put your mark and hit enter. The game will let you know when is your turn'
 
 p 'Enter a name for player 1:'
 player_1 = gets.chomp
