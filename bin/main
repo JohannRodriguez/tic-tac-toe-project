@@ -24,7 +24,27 @@ def player_move
   display_board
   p 'Make your move:'
   player_mark = gets.chomp
+  case player_mark
+  when "1"
+    p "valid input"
+  when "2"
+    p "valid input"
+  when "3"
+    p "valid input"
+  when "4"
+    p "valid input"
+  when "5"
+    p "valid input"
+  when "7"
+    p "valid input"
+  when "8"
+    p "valid input"
+  when "9"
+    p "valid input"
+  else
+    p "invalid input"
+  end
 end
 
-p "Now winner, it's a match" if turns = 0
+p "Now winner, it's a match" if turns == 0
 turns.times {player_move}
