@@ -68,7 +68,7 @@ class Player_move
       end
     end
     @count += 1 if @valid_turn
-    $turns += 1 unless @valid_turn
+    $turns -= 1 if @valid_turn
     return puts "Please enter a valid character" unless @valid_turn
   end
 
@@ -83,7 +83,6 @@ class Player_move
     return p "#{current_player} won!" if $win
     p 'Make your move:'
     Player_move.board_check
-    $turns -= 1
   end
 end
 
