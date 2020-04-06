@@ -49,5 +49,5 @@ UserDisplay.print_board(board)
 
 while $game_on do
   player_move = gets.chomp.delete(" ")
-  p PlayerNoveInput.new.validate_move(player_move, board, player_1, player_2)
+  p PlayerMoveInput.new.validate_move(player_move, board, player_1, player_2)
 end

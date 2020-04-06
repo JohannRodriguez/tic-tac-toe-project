@@ -51,8 +51,8 @@ class PlayerMoveInput
         CheckGameOn.new.player_move_save(player_mark)
         CheckGameOn.new.win(player_1_name, player_2_name)
         move_print(player_mark, modified_grid)
-        User_display.new.wich_turn(player_1_name, player_2_name) if $game_on
-        return User_display.print_board(modified_grid)
+        UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
+        return UserDisplay.print_board(modified_grid)
       end
     end
     unless valid_move
