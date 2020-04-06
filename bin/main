@@ -1,89 +1,53 @@
+require_relative '../lib/game.rb'
+# frozen_string_literal: false
 #!/usr/bin/env ruby
-$board_row_1 = ' 1 | 2 | 3 '
-$board_row_2 = ' 4 | 5 | 6 '
-$board_row_3 = ' 7 | 8 | 9 '
-$exit = false
-$win = false
-$turns = 9
 
-p 'How to play:'
-p 'Tic tac toe is a game for two players who will take turns to mark the spaces of a 3x3 grid, the first player who place three of their marks in a horizontal, vertical, or diagonal row wins'
-p 'To play with this program, first enter a name for each of the players, when you are ready type the number where you want to put your mark and hit enter. The game will let you know when is your turn'
+board = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
+$current_turn = 0
+$game_on = true
 
-p 'Enter a name for player 1:'
-$player_1 = gets.chomp
-p 'Enter a name for player 2:'
-$player_2 = gets.chomp
-while $player_1 == $player_2
-  p "Use a diferent name for player 2"
-  $player_2 = gets.chomp
-end
-
-def display_board
-  p $board_row_1
-  p $board_row_2
-  p $board_row_3
-end
-
-def finish_game
-  $win = true if $board_row_1 == ' X | X | X ' or $board_row_1 == ' O | O | O '
-  $win = true if $board_row_2 == ' X | X | X ' or $board_row_2 == ' O | O | O '
-  $win = true if $board_row_3 == ' X | X | X ' or $board_row_3 == ' O | O | O '
-  $win = true if $board_row_1[1] == 'X' and $board_row_2[1] == 'X' and $board_row_3[1] == 'X'
-  $win = true if $board_row_1[1] == 'O' and $board_row_2[1] == 'O' and $board_row_3[1] == 'O'
-  $win = true if $board_row_1[5] == 'X' and $board_row_2[5] == 'X' and $board_row_3[5] == 'X'
-  $win = true if $board_row_1[5] == 'O' and $board_row_2[5] == 'O' and $board_row_3[5] == 'O'
-  $win = true if $board_row_1[9] == 'X' and $board_row_2[9] == 'X' and $board_row_3[9] == 'X'
-  $win = true if $board_row_1[9] == 'O' and $board_row_2[9] == 'O' and $board_row_3[9] == 'O'
-  $win = true if $board_row_1[1] == 'X' and $board_row_2[5] == 'X' and $board_row_3[9] == 'X'
-  $win = true if $board_row_1[1] == 'O' and $board_row_2[5] == 'O' and $board_row_3[9] == 'O'
-  $win = true if $board_row_1[9] == 'X' and $board_row_2[5] == 'X' and $board_row_3[1] == 'X'
-  $win = true if $board_row_1[9] == 'O' and $board_row_2[5] == 'O' and $board_row_3[1] == 'O'
-  $exit = true if $turns == 0 || $win
-end
-
-class Player_move
-  @count = 0
-  def self.board_check
-    turn = 'X' if @count.even?
-    turn = 'O' if @count.odd?
-    player_mark = gets.chomp
-    @valid_turn = false
-    $board_row_1.length.times do |n|
-      if player_mark == $board_row_1[n] and player_mark != "|" and player_mark != " " and player_mark  != 'X' and player_mark != 'O'
-        $board_row_1[n] = turn
-        @valid_turn = true
-      end
+class Player_name_input
+  def name_input(player, player_1 = nil)
+    fake_array = []
+    p "Enter a name for player #{player}:"
+    check = false
+    while check == false do
+      player_name = gets.chomp
+      player_name.split('').input_validation(player_1, true, player)
+      check = true if player_name.split('').input_validation(player_1, false, player) == true
     end
-    $board_row_2.length.times do |n|
-      if player_mark == $board_row_2[n] and player_mark != "|" and player_mark != " " and player_mark  != 'X' and player_mark != 'O'
-        $board_row_2[n] = turn
-        @valid_turn = true
-      end
-    end
-    $board_row_3.length.times do |n|
-      if player_mark == $board_row_3[n] and player_mark != "|" and player_mark != " " and player_mark  != 'X' and player_mark != 'O'
-        $board_row_3[n] = turn
-        @valid_turn = true
-      end
-    end
-    @count += 1 if @valid_turn
-    $turns -= 1 if @valid_turn
-    return puts "Please enter a valid character" unless @valid_turn
-  end
-
-  def self.make_a_move
-    finish_game
-    @count -= 1 if $win
-    current_player = $player_1 if @count.even?
-    current_player = $player_2 if @count.odd?
-    p "It's #{current_player}'s turn!" unless $win
-    display_board
-    return p "Its a draw" if $turns == 0 and $win == false
-    return p "#{current_player} won!" if $win
-    p 'Make your move:'
-    Player_move.board_check
+    return player_name
   end
 end
 
-Player_move.make_a_move while $exit == false
+
+confirm_name = "n"
+player_1 = ""
+player_2 = ""
+
+p "First, input a name for each player. Spaces in the name will be deleted"
+p ""
+
+while confirm_name == "n" do
+  player_1 = Player_name_input.new.name_input("1")
+  p ""
+  p "Player 1 name is #{player_1}!"
+  p "Is the name correct? type 'n' to correct or hit enter to continue"
+  confirm_name = gets.chomp
+end
+confirm_name = "n"
+while confirm_name == "n" do
+  player_2 = Player_name_input.new.name_input("2", player_1)
+  p ""
+  p "Player 2 name is #{player_2}!"
+  p "Is the name correct? type 'n' to correct or hit enter to continue"
+  confirm_name = gets.chomp
+end
+
+User_display.new.wich_turn(player_1, player_2)
+User_display.print_board(board)
+
+while $game_on do
+  player_move = gets.chomp.delete(" ")
+  p Player_move_input.new.validate_move(player_move, board, player_1, player_2)
+end
