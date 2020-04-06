@@ -6,7 +6,7 @@ board = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
 $current_turn = 0
 $game_on = true
 
-class Player_name_input
+class PlayerNameInput
   def name_input(player, player_1 = nil)
     fake_array = []
     p "Enter a name for player #{player}:"
@@ -29,7 +29,7 @@ p "First, input a name for each player. Spaces in the name will be deleted"
 p ""
 
 while confirm_name == "n" do
-  player_1 = Player_name_input.new.name_input("1")
+  player_1 = PlayerNameInput.new.name_input("1")
   p ""
   p "Player 1 name is #{player_1}!"
   p "Is the name correct? type 'n' to correct or hit enter to continue"
@@ -37,17 +37,17 @@ while confirm_name == "n" do
 end
 confirm_name = "n"
 while confirm_name == "n" do
-  player_2 = Player_name_input.new.name_input("2", player_1)
+  player_2 = PlayerNameInput.new.name_input("2", player_1)
   p ""
   p "Player 2 name is #{player_2}!"
   p "Is the name correct? type 'n' to correct or hit enter to continue"
   confirm_name = gets.chomp
 end
 
-User_display.new.wich_turn(player_1, player_2)
-User_display.print_board(board)
+UserDisplay.new.wich_turn(player_1, player_2)
+UserDisplay.print_board(board)
 
 while $game_on do
   player_move = gets.chomp.delete(" ")
-  p Player_move_input.new.validate_move(player_move, board, player_1, player_2)
+  p PlayerNoveInput.new.validate_move(player_move, board, player_1, player_2)
 end

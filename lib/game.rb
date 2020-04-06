@@ -1,51 +1,55 @@
+# frozen_string_literal: false
+
 module Enumerable
   def input_validation(player_name_1 = nil, print = true, player_number)
-      if self.empty?
+      if empty?
         return p "Your name can't be empty, try to type a diferent one for player #{player_number}" if print
-      elsif self.join == player_name_1
+      elsif join == player_name_1
         return p "You can't choose the same name as #{player_name_1}, try to type a diferent one for player #{player_number}" if print
-      elsif self.all?(' ')
+      elsif all?(' ')
         return p "Your must have at least one visible character, try to type a diferent one for player #{player_number}" if print
       else
-        return true
+        true
       end
   end
 
   def array_include?(arg)
     arg.length.times do |n|
-      return false unless self.include?(arg[n])
+      return false unless include?(arg[n])
     end
     true
   end
 end
 
-class User_display
+# print boars for the user to see
+class UserDisplay
   def self.print_board(grid)
-    p "********************"
+    p '********************'
     grid.length.times { |n| p grid[n] }
-    p "********************"
+    p '********************'
   end
 
   def wich_turn(player_1_name, player_2_name)
     player_turn_name = player_1_name if $current_turn.even?
-    mark = "X" if $current_turn.even?
+    mark = 'X' if $current_turn.even?
     player_turn_name = player_2_name if $current_turn.odd?
-    mark = "O" if $current_turn.odd?
+    mark = 'O' if $current_turn.odd?
     p "It's #{player_turn_name}'s turn' ('#{mark}'), make your move:"
   end
 end
 
-class Player_move_input
-  @@valid_moves = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+# Get the player movement and procces it to se if it's valid
+class PlayerMoveInput
+  @@valid_moves = %w[1 2 3 4 5 6 7 8 9]
   def validate_move(player_mark, modified_grid, player_1_name, player_2_name)
     valid_move = false
     @@valid_moves.length.times do |n|
       if player_mark == @@valid_moves[n]
         valid_move = true
         @@valid_moves.delete(player_mark)
-        Check_game_on.new.draw(@@valid_moves)
-        Check_game_on.new.player_move_save(player_mark)
-        Check_game_on.new.win(player_1_name, player_2_name)
+        CheckGameOn.new.draw(@@valid_moves)
+        CheckGameOn.new.player_move_save(player_mark)
+        CheckGameOn.new.win(player_1_name, player_2_name)
         move_print(player_mark, modified_grid)
         User_display.new.wich_turn(player_1_name, player_2_name) if $game_on
         return User_display.print_board(modified_grid)
@@ -53,14 +57,14 @@ class Player_move_input
     end
     unless valid_move
       p "That's not a valid move, try again" if $game_on
-      User_display.new.wich_turn(player_1_name, player_2_name) if $game_on
-      User_display.print_board(modified_grid) if $game_on
+      UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
+      UserDisplay.print_board(modified_grid) if $game_on
     end
   end
 
   def move_print(player_mark_print, modified_grid_print)
-    player_turn_print = "X" if $current_turn.even?
-    player_turn_print = "O" if $current_turn.odd?
+    player_turn_print = 'X' if $current_turn.even?
+    player_turn_print = 'O' if $current_turn.odd?
     modified_grid_print.each do |sub_array|
       sub_array.length.times do |n|
         if player_mark_print == sub_array[n]
@@ -73,7 +77,8 @@ class Player_move_input
   end
 end
 
-class Check_game_on
+# check to see if the game should be on or off
+class CheckGameOn
   @@winning_cases = [["1","2","3"], ["4","5","6"], ["7","8","9"], ["1","4","7"], ["2","5","8"], ["3","6","9"], ["1","5","9"], ["3","5","7"]]
   @@player_1_moves = []
   @@player_2_moves = []
