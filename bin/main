@@ -73,12 +73,13 @@ class PlayerMoveInput
         next
       end
     end
-    return if valid_move == false
+    if valid_move == false
       p "That's not a valid move, try again" if $game_on
       UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
       UserDisplay.print_board(modified_grid) if $game_on
     end
   end
+end
 
   def move_print(player_mark_print, modified_grid_print)
     player_turn_print = 'X' if $current_turn.even?
