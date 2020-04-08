@@ -66,8 +66,8 @@ class PlayerMoveInput
       if player_mark == @@valid_moves[n]
         valid_move = true
         @@valid_moves.delete(player_mark)
-        CheckGameOn.new.draw(@@valid_moves, player_1_name, player_2_name)
-        CheckGameOn.new.player_move_save(player_mark)
+        CheckGameOn.new.draw(@@valid_moves)
+        CheckGameOn.new.player_move_save(player_mark, player_1_name, player_2_name)
         move_print(player_mark, modified_grid)
         UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
         return UserDisplay.print_board(modified_grid)
@@ -100,27 +100,28 @@ class CheckGameOn
   @@winning_cases = [%w[1 2 3], %w[4 5 6], %w[7 8 9], %w[1 4 7], %w[2 5 8], %w[3 6 9], %w[1 5 9], %w[3 5 7]]
   @@player_1_moves = []
   @@player_2_moves = []
-  def player_move_save(player_input)
+  def player_move_save(player_input, player_1, player_2)
     @@player_1_moves.push(player_input) if $current_turn.even?
     @@player_2_moves.push(player_input) if $current_turn.odd?
+    win(player_1, player_2)
   end
 
-  def draw(no_moves, player_1_name, player_2_name)
-    $game_on = false if no_moves.length.zero?
+  def draw(no_moves)
     return p "It's a draw, no winners" if no_moves.length.zero?
 
-    win(player_1_name, player_2_name)
   end
 
   def win(player_1, player_2)
     8.times do |n|
       if @@player_1_moves.array_include?(@@winning_cases[n])
+        p '*****************'
         p "#{player_1} wins!"
-        $game_on = false
+        p '*****************'
       end
       if @@player_2_moves.array_include?(@@winning_cases[n])
+        p '*****************'
         p "#{player_2} wins!"
-        $game_on = false
+        p '*****************'
       end
     end
   end
