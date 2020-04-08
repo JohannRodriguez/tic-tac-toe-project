@@ -108,7 +108,6 @@ class CheckGameOn
 
   def draw(no_moves)
     return p "It's a draw, no winners" if no_moves.length.zero?
-
   end
 
   def win(player_1, player_2)
