@@ -1,5 +1,4 @@
 require_relative '../lib/game.rb'
-# frozen_string_literal: false
 # !/usr/bin/env ruby
 
 board = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
