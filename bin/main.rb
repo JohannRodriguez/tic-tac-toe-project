@@ -20,6 +20,24 @@ class PlayerNameInput
   end
 end
 
+# print boars for the user to see
+class UserDisplay
+  def self.print_board(grid)
+    p '********************'
+    grid.length.times { |n| p grid[n] }
+    p '********************'
+  end
+
+  def wich_turn(player_1_name, player_2_name)
+    player_turn_name = player_1_name if $current_turn.even?
+    mark = 'X' if $current_turn.even?
+    player_turn_name = player_2_name if $current_turn.odd?
+    mark = 'O' if $current_turn.odd?
+    p "It's #{player_turn_name}'s turn' ('#{mark}'), make your move:"
+  end
+end
+
+
 confirm_name = 'n'
 player_1 = ''
 player_2 = ''
