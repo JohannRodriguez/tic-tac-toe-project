@@ -1,4 +1,5 @@
 require_relative '../lib/game.rb'
+require_relative '../lib/enumerables.rb'
 # !/usr/bin/env ruby
 
 board = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
