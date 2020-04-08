@@ -2,15 +2,15 @@
 
 module Enumerable
   def input_validation(player_name_1 = nil, print = true, player_number)
-      if empty?
-        return p "Your name can't be empty, try to type a diferent one for player #{player_number}" if print
-      elsif join == player_name_1
-        return p "You can't choose the same name as #{player_name_1}, try to type a diferent one for player #{player_number}" if print
-      elsif all?(' ')
-        return p "Your must have at least one visible character, try to type a diferent one for player #{player_number}" if print
-      else
-        true
-      end
+    if empty?
+      return p "Your name can't be empty, try to type a diferent one for player #{player_number}" if print
+    elsif join == player_name_1
+      return p "You can't choose the same name as #{player_name_1}, try to type a diferent one for player #{player_number}" if print
+    elsif all?(' ')
+      return p "Your must have at least one visible character, try to type a diferent one for player #{player_number}" if print
+    else
+      true
+    end
   end
 
   def array_include?(arg)
@@ -47,9 +47,8 @@ class PlayerMoveInput
       if player_mark == @@valid_moves[n]
         valid_move = true
         @@valid_moves.delete(player_mark)
-        CheckGameOn.new.draw(@@valid_moves)
+        CheckGameOn.new.draw(@@valid_moves, player_1_name, player_2_name)
         CheckGameOn.new.player_move_save(player_mark)
-        CheckGameOn.new.win(player_1_name, player_2_name)
         move_print(player_mark, modified_grid)
         UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
         return UserDisplay.print_board(modified_grid)
@@ -87,8 +86,10 @@ class CheckGameOn
     @@player_2_moves.push(player_input) if $current_turn.odd?
   end
 
-  def draw(no_moves)
-    $game_on = false if no_moves.length == 0
+  def draw(no_moves, player_1_name, player_2_name)
+    $game_on = false if no_moves.length.zero?
+    return p "It's a draw, no winners" if no_moves.length.zero?
+    win(player_1_name, player_2_name)
   end
 
   def win(player_1, player_2)
