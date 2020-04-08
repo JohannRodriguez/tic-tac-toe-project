@@ -29,15 +29,15 @@ player_2 = ''
 p 'First, input a name for each player. Spaces in the name will be deleted'
 p '**********************'
 
-while confirm_name == "n"
+while confirm_name == 'n'
   player_1 = PlayerNameInput.new.name_input('1')
   p '********************************'
   p "Player 1 name is #{player_1}!"
   p "Is the name correct? type 'n' to correct or hit enter to continue"
   confirm_name = gets.chomp
 end
-confirm_name = "n"
-while confirm_name == "n"
+confirm_name = 'n'
+while confirm_name == 'n'
   player_2 = PlayerNameInput.new.name_input('2', player_1)
   p '********************************'
   p "Player 2 name is #{player_2}!"
