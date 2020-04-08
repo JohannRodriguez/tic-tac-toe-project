@@ -41,8 +41,12 @@ class UserDisplay
     p "It's a draw, no winners"
   end
 
-  def player_win
+  def player_win(winer)
+    p "#{winer} wins! Great match"
+  end
 
+  def invalid_move
+    p "That's not a valid move, try again"
   end
 end
 

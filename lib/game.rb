@@ -18,12 +18,12 @@ class CheckGameOn
     @@make_draw = true
     8.times do |n|
       if @@player_1_moves.array_include?(@@winning_cases[n])
-        p "#{player_1} wins!"
+        UserDisplay.new.player_win(player_1)
         $game_on = false
         @@make_draw = false
       end
       if @@player_2_moves.array_include?(@@winning_cases[n])
-        p "#{player_2} wins!"
+        UserDisplay.new.player_win(player_2)
         $game_on = false
         @@make_draw = false
       end
