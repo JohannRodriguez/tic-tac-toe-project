@@ -1,6 +1,6 @@
 require_relative '../lib/game.rb'
 # frozen_string_literal: false
-#!/usr/bin/env ruby
+# !/usr/bin/env ruby
 
 board = [' 1 | 2 | 3 ', ' 4 | 5 | 6 ', ' 7 | 8 | 9 ']
 $current_turn = 0
@@ -9,7 +9,6 @@ $game_on = true
 # To get tha player name and see if it can be used
 class PlayerNameInput
   def name_input(player, player_1 = nil)
-    fake_array = []
     p "Enter a name for player #{player}:"
     check = false
     while check == false
@@ -17,10 +16,9 @@ class PlayerNameInput
       player_name.split('').input_validation(player_1, true, player)
       check = true if player_name.split('').input_validation(player_1, false, player) == true
     end
-    return player_name
+    player_name
   end
 end
-
 
 confirm_name = 'n'
 player_1 = ''
