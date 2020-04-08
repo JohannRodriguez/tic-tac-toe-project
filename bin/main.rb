@@ -36,6 +36,14 @@ class UserDisplay
     mark = 'O' if $current_turn.odd?
     p "It's #{player_turn_name}'s turn' ('#{mark}'), make your move:"
   end
+
+  def is_draw
+    p "It's a draw, no winners"
+  end
+
+  def player_win
+
+  end
 end
 
 confirm_name = 'n'

@@ -7,8 +7,7 @@ class PlayerMoveInput
       if player_mark == @@valid_moves[n]
         valid_move = true
         @@valid_moves.delete(player_mark)
-        CheckGameOn.new.draw(@@valid_moves)
-        CheckGameOn.new.player_move_save(player_mark, player_1_name, player_2_name)
+        CheckGameOn.new.player_move_save(player_mark, player_1_name, player_2_name, @@valid_moves)
         move_print(player_mark, modified_grid)
         UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
         return UserDisplay.print_board(modified_grid)
