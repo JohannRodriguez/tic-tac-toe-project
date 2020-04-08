@@ -14,7 +14,7 @@ class PlayerMoveInput
       end
     end
     unless valid_move
-      UserDisplay.new.invalid_move  if $game_on
+      UserDisplay.new.invalid_move if $game_on
       UserDisplay.new.wich_turn(player_1_name, player_2_name) if $game_on
       UserDisplay.print_board(modified_grid) if $game_on
     end

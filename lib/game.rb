@@ -11,7 +11,7 @@ class CheckGameOn
 
   def draw(no_moves)
     $game_on = false if no_moves.length.zero?
-    UserDisplay.new.is_a_draw if no_moves.length.zero?
+    UserDisplay.new.draw? if no_moves.length.zero?
   end
 
   def win(player_1, player_2, valid_moves)

@@ -37,7 +37,7 @@ class UserDisplay
     p "It's #{player_turn_name}'s turn' ('#{mark}'), make your move:"
   end
 
-  def is_a_draw
+  def draw?
     p "It's a draw, no winners"
   end
 
