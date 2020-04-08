@@ -1,5 +1,6 @@
 # frozen_string_literal: false
 
+# Modules for the array include and validate inputs
 module Enumerable
   def input_validation(player_name_1 = nil, print = true, player_number)
     if empty?
