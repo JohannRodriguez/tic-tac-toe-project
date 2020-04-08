@@ -38,7 +38,6 @@ class UserDisplay
   end
 end
 
-
 confirm_name = 'n'
 player_1 = ''
 player_2 = ''
