@@ -54,6 +54,8 @@ Style/GuardClause:
   Enabled: false
 Style/ClassVars:
   Enabled: false
+Style/BlockComments:
+  Enabled: false
 
 Layout/HashAlignment:
   EnforcedColonStyle: key
