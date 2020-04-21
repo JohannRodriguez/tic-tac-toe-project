@@ -10,25 +10,26 @@ class CheckGameOn
     @@player_1_moves.push(player_input) if current_turn.even?
     @@player_2_moves.push(player_input) if current_turn.odd?
     win(player_1_name, player_2_name, valid_moves)
+    return [@@player_1_moves, @@player_2_moves]
   end
 
   def draw(no_moves)
     $game_on = false if no_moves.length.zero?
-    UserDisplay.new.draw? if no_moves.length.zero?
+    return "It's a draw, no winners" if no_moves.length.zero?
   end
 
-  def win(player_1, player_2, valid_moves)
+  def win(player_1, player_1_moves = @@player_1_moves, player_2_moves = @@player_2_moves, player_2, valid_moves)
     @@make_draw = true
     8.times do |n|
-      if @@player_1_moves.array_include?(@@winning_cases[n])
-        UserDisplay.new.player_win(player_1)
+      if player_1_moves.array_include?(@@winning_cases[n])
         $game_on = false
         @@make_draw = false
+        return "#{player_1} wins! Great match"
       end
-      if @@player_2_moves.array_include?(@@winning_cases[n])
-        UserDisplay.new.player_win(player_2)
+      if player_2_moves.array_include?(@@winning_cases[n])
         $game_on = false
         @@make_draw = false
+        return "#{player_2} wins! Great match"
       end
     end
     draw(valid_moves) if @@make_draw
