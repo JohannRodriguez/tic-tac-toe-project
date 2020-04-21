@@ -5,7 +5,6 @@ AllCops:
     - "README.md"
     - "Guardfile"
     - "Rakefile"
-    - "spec_helper"
 
   DisplayCopNames: true
 
@@ -54,6 +53,8 @@ Style/Next:
 Style/GuardClause:
   Enabled: false
 Style/ClassVars:
+  Enabled: false
+Style/BlockComments:
   Enabled: false
 
 Layout/HashAlignment:
