@@ -21,13 +21,14 @@ class PlayerMoveInput
   end
 
   def move_print(player_mark_print, modified_grid_print)
-    player_turn_print = 'X' if $current_turn.even?
-    player_turn_print = 'O' if $current_turn.odd?
+    current_turn = 0
+    player_turn_print = 'X' if current_turn.even?
+    player_turn_print = 'O' if current_turn.odd?
     modified_grid_print.each do |sub_array|
       sub_array.length.times do |n|
         if player_mark_print == sub_array[n]
           sub_array[n] = player_turn_print
-          $current_turn += 1
+          current_turn += 1
           return modified_grid_print
         end
       end
