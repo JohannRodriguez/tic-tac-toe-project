@@ -7,7 +7,7 @@ describe CheckGameOn do
 
   describe '#player_move_save' do
     it 'Returns two arrays with the inputs of the player moves depending on the turn' do
-      expect(game.player_move_save('1', 'Mario', 'Luigi', ['1', '2', '3'])).to eql([['1'], []])
+      expect(game.player_move_save('1', 'Mario', 'Luigi', %w[1 2 3])).to eql([['1'], []])
     end
   end
 
@@ -22,7 +22,7 @@ describe CheckGameOn do
 
   describe '#win' do
     it 'Returns nil if none of the arrays makes the conditions' do
-      expect(game.win('Mario',['1'], ['2'], 'Luigi', ['1'])).to eql(nil)
+      expect(game.win('Mario', ['1'], ['2'], 'Luigi', ['1'])).to eql(nil)
     end
     it 'Returns a message if one of the arrays meets the conditions' do
       expect(game.win('Mario', %w[1 2 3], ['2'], 'Luigi', ['1'])).to eql('Mario wins! Great match')

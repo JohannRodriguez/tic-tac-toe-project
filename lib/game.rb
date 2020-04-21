@@ -10,7 +10,7 @@ class CheckGameOn
     @@player_1_moves.push(player_input) if current_turn.even?
     @@player_2_moves.push(player_input) if current_turn.odd?
     win(player_1_name, player_2_name, valid_moves)
-    return [@@player_1_moves, @@player_2_moves]
+    [@@player_1_moves, @@player_2_moves]
   end
 
   def draw(no_moves)

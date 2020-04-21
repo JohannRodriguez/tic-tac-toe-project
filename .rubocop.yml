@@ -5,6 +5,7 @@ AllCops:
     - "README.md"
     - "Guardfile"
     - "Rakefile"
+    - "spec_helper"
 
   DisplayCopNames: true
 
