@@ -6,8 +6,9 @@ class CheckGameOn
   @@player_1_moves = []
   @@player_2_moves = []
   def player_move_save(player_input, player_1_name, player_2_name, valid_moves)
-    @@player_1_moves.push(player_input) if $current_turn.even?
-    @@player_2_moves.push(player_input) if $current_turn.odd?
+    current_turn = 0
+    @@player_1_moves.push(player_input) if current_turn.even?
+    @@player_2_moves.push(player_input) if current_turn.odd?
     win(player_1_name, player_2_name, valid_moves)
   end
 
